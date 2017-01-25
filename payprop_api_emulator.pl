@@ -5,6 +5,7 @@ use warnings;
 
 use Mojolicious::Lite;
 use Mojo::UserAgent;
+use JSON::Schema::ToJSON;
 
 # we need these for emulation
 foreach ( qw/
@@ -58,7 +59,16 @@ $api->options( '/*whatever' => sub {
 plugin OpenAPI => {
 	route => $api,
 	url   => "https://za.payprop.com/api/docs/api_spec.yaml",
-	emulate_not_implemented => 1,
+	not_implemented => sub {
+		my ( $c,$spec ) = @_;
+
+		if (my ($response) = grep { /^2/ } sort keys(%{$spec->{'responses'}})) {
+			my $schema = $spec->{'responses'}{$response}{schema};
+			return JSON::Schema::ToJSON->new->json_schema_to_json( schema => $schema );
+		}
+
+		return {errors => [{message => 'Not implemented.', path => '/'}], status => 501};
+	}
 };
 
 app->start;
