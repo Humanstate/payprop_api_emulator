@@ -54,7 +54,7 @@ export PP_API_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOm51bGwsImNsaWV
 Then you can call the emulator:
 
 ```
-> curl -k -H"Authorization: Bearer $PP_API_TOKEN" -X GET 'https://127.0.0.1:3001/api/v1.0/me/portfolio' | jq .
+> curl -k -H"Authorization: Bearer $PP_API_TOKEN" -X GET 'https://127.0.0.1:3001/api/v1.0/me/portfolio'
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100   804  100   804    0     0  23519      0 --:--:-- --:--:-- --:--:-- 23647
