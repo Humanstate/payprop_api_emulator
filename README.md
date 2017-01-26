@@ -8,9 +8,11 @@ The emulator is a perl script that requires a couple of CPAN modules
 
 ### Install necessary perl modules
 
+Note if you are not using the system perl you shouldn't need to prefix the two commands below with `sudo`.
+
 ```
-cpan App::cpanminus # if you do not already have cpanm installed
-cpanm --installdeps .
+sudo cpan App::cpanminus # if you do not already have cpanm installed
+sudo cpanm --installdeps .
 ```
 
 ### Export the environment variables:
