@@ -59,36 +59,36 @@ Then you can call the emulator:
                                  Dload  Upload   Total   Spent    Left  Speed
 100   804  100   804    0     0  23519      0 --:--:-- --:--:-- --:--:-- 23647
 {
-  "arrears": 332.1,
-  "currency": "}hu*n!g*?CJ1",
-  "expenses": 240,
-  "from_date": "}}~P4/[kxF>tz2>4Wg",
-  "income": 759.4,
+  "arrears": 1000.01,
+  "currency": "CHF",
+  "expenses": 1000.01,
+  "from_date": "2000-01-01T00:00:01",
+  "income": 1000.01,
   "items": [
     {
-      "arrears": 583.2,
-      "expenses": 51.4,
-      "income": 927.6,
+      "arrears": 1000.01,
+      "expenses": 1000.01,
+      "income": 1000.01,
       "property_address": {
-        "city": "-_np9x~*^?@G8yhkcVM&7]Cl|0T!NTVV{\\}5g4xLjw",
-        "country_code": "zXd7(PpnXG9\"HTV?6U-{52",
-        "created": "6RF+(~7itTyg2iundox\\Y_0b!",
-        "email": "j$1(z(D}hP.Kg5V*yfOTFgD(%j+*+6X@c]H)wQZ&[Ut",
-        "fax": "N3IW`=,dGwL?@~30uWt7A2'5!%{_",
-        "first_line": "}xr0H;R|v5LP",
-        "id": "p&51YPgEE(",
-        "latitude": 178.1,
-        "longitude": 547.1,
-        "modified": "-jvQ{k-kag`,r#92)`>$\"OM~p?Rbxq38hp.c",
-        "phone": ",o8n)b5T[\"SshgRH8X-~j];,h@7",
-        "second_line": "0:YBW#c.UT",
-        "state": "0dPu!]vQJt`8x\"Gk`=5Nz|.x>F{Lja=wQL+L(hV7VDT!$M",
-        "third_line": "vH]hcx%_;#f`K{Gg",
-        "zip_code": "z);S9-&_s!|9Af<HgrUW"
+        "city": "Villars-sur-Ollon",
+        "country_code": "CH",
+        "created": "2000-01-01T00:00:00",
+        "email": "foo@gmail.com",
+        "fax": "020 1234 5678",
+        "first_line": "Av. Centrale",
+        "id": "D8eJPwZG7j",
+        "latitude": "-33.93515325806508",
+        "longitude": 18.4195876121522,
+        "modified": "2000-01-01T00:00:01",
+        "phone": "020 1234 5678",
+        "second_line": "%Z1,nea,vtXfjoMZR_{>iZE>",
+        "state": "Vaud",
+        "third_line": "EcgJBjvmD+>jH3Y8R}>MxW\"I#P(|b*a}Qt/o",
+        "zip_code": "1884"
       },
-      "property_name": "CBmu++f7)HLbDx2/"
+      "property_name": "Magnolia Rd 4"
     }
   ],
-  "to_date": "KZD[#Iri<_vgDlK3,QD[MY"
+  "to_date": "2000-01-01T00:00:01"
 }
 ```
