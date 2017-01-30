@@ -67,12 +67,15 @@ app->helper( 'openapi.not_implemented' => sub {
 	my $spec = $c->openapi->spec;
 	if (my ($response) = grep { /^2/ } sort keys(%{$spec->{'responses'}})) {
 		my $schema = $spec->{'responses'}{$response}{schema};
-		return JSON::Schema::ToJSON->new(
-			example_key => 'x-example',
-		)->json_schema_to_json( schema => $schema );
+		return {
+			status => $response,
+			json   => JSON::Schema::ToJSON->new(
+				example_key => 'x-example',
+			)->json_schema_to_json( schema => $schema ),
+		};
 	}
 
-	return {errors => [{message => 'Not implemented.', path => '/'}], status => 501};
+	return {json => {errors => [{message => 'Not implemented.', path => '/'}]}, status => 501};
 });
 
 
