@@ -9,6 +9,7 @@ BEGIN {
 	foreach my $path ( @{ JSON::Validator->new->cache_paths } ) {
 		foreach my $file ( grep { -f } glob( "$path/*" ) ) {
 			print "Removing cached file: $file\n";
+			unlink( $file ) || die "Failed to unlilnk $file: $!";
 		}
 	};
 };
