@@ -3,6 +3,16 @@
 use strict;
 use warnings;
 
+BEGIN {
+	# JSON::Validator caches API specs, removed them first
+	use JSON::Validator;
+	foreach my $path ( @{ JSON::Validator->new->cache_paths } ) {
+		foreach my $file ( grep { -f } glob( "$path/*" ) ) {
+			print "Removing cached file: $file\n";
+		}
+	};
+};
+
 use Mojolicious::Lite;
 use Mojo::UserAgent;
 use JSON::Schema::ToJSON;
