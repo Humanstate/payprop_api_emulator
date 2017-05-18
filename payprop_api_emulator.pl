@@ -3,20 +3,10 @@
 use strict;
 use warnings;
 
-BEGIN {
-	# JSON::Validator caches API specs, removed them first
-	use JSON::Validator;
-	foreach my $path ( @{ JSON::Validator->new->cache_paths } ) {
-		foreach my $file ( grep { -f } glob( "$path/*" ) ) {
-			print "Removing cached file: $file\n";
-			unlink( $file ) || die "Failed to unlilnk $file: $!";
-		}
-	};
-};
-
 use Mojolicious::Lite;
 use Mojo::UserAgent;
 use JSON::Schema::ToJSON;
+use Mojo::JSON;
 
 # we need these for emulation
 foreach ( qw/
@@ -68,26 +58,27 @@ $api->options( '/*whatever' => sub {
  
 # setup API routes from swagger config
 plugin OpenAPI => {
-	route => $api,
-	url   => "https://za.payprop.com/api/docs/api_spec.yaml",
+	route    => $api,
+	url      => "https://za.payprop.com/api/docs/api_spec.yaml",
+	renderer => sub {
+		my ( $c,$data ) = @_;
+
+		if ( $data->{status} == 501 ) {
+
+			my $spec = $c->openapi->spec;
+
+			if (my ($response) = grep { /^2/ } sort keys(%{$spec->{'responses'}})) {
+				my $schema = $spec->{'responses'}{$response}{schema};
+				$data = JSON::Schema::ToJSON->new(
+					example_key => 'x-example',
+				)->json_schema_to_json( schema => $schema );
+				$c->stash( status => $response );
+			}
+		}
+
+		$data->{messages} = delete $data->{errors} if $data->{errors};
+		return Mojo::JSON::encode_json( $data );
+	},
 };
-
-app->helper( 'openapi.not_implemented' => sub {
-	my ( $c ) = @_;
-
-	my $spec = $c->openapi->spec;
-	if (my ($response) = grep { /^2/ } sort keys(%{$spec->{'responses'}})) {
-		my $schema = $spec->{'responses'}{$response}{schema};
-		return {
-			status => $response,
-			json   => JSON::Schema::ToJSON->new(
-				example_key => 'x-example',
-			)->json_schema_to_json( schema => $schema ),
-		};
-	}
-
-	return {json => {errors => [{message => 'Not implemented.', path => '/'}]}, status => 501};
-});
-
 
 app->start;
