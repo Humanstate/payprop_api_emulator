@@ -71,6 +71,7 @@ plugin OpenAPI => {
 				my $schema = $spec->{'responses'}{$response}{schema};
 				$data = JSON::Schema::ToJSON->new(
 					example_key => 'x-example',
+					max_depth   => 20,
 				)->json_schema_to_json( schema => $schema );
 				$c->stash( status => $response );
 			}
