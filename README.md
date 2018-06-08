@@ -1,6 +1,6 @@
 # PayProp API Emulator
 
-The PayProp API Emulator is available as a stand alone perl script that will allow you to test your client code without having to connect to a remote server. It is written to emulate responses from the latest OpenAPI spec as available on the live PayProp site so will be guaranteed to always return representative data *structures*. Note that all data contained within responses is random, and will not be the same across runs or calls, so whilst the *structures* are representative the data is *not*.
+The PayProp API Emulator is available as a stand alone perl script that will allow you to test your client code without having to connect to a remote server. It is written to emulate responses from the latest OpenAPI spec as available on the PayProp staging site so will be guaranteed to always return representative data *structures*. Note that all data contained within responses is random, and will not be the same across runs or calls, so whilst the *structures* are representative the data is *not*.
 
 ## Setup and running
 

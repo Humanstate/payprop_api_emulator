@@ -59,7 +59,7 @@ $api->options( '/*whatever' => sub {
 # setup API routes from swagger config
 plugin OpenAPI => {
 	route    => $api,
-	url      => "https://za.payprop.com/api/docs/api_spec.yaml",
+	url      => "https://staging-api.payprop.com/api/docs/api_spec.yaml",
 	renderer => sub {
 		my ( $c,$data ) = @_;
 
